@@ -12,15 +12,12 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'as locale' => [
+        'class' => 'common\components\LocaleBehavior',
+        'enablePreferredLanguage' => true
+    ],
     'components' => [
-      'fileStorage'=>[
-            'class' => 'trntv\filekit\Storage',
-            'baseUrl' => '@web/uploads',
-            'filesystem'=> [
-                'class' => 'common\components\LocalFlysystemBuilder',
-                'path' => '@webroot/uploads'
-            ]
-        ],
+      
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

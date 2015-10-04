@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','set-locale'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,6 +50,11 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
+            'set-locale'=>[
+                 'class'=>'common\actions\SetLocaleAction',
+                 'locales'=>array_keys(Yii::$app->params['availableLocales']),
+                 'localeCookieName'=>'_locale'
+            ]
         ];
     }
 

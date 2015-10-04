@@ -17,5 +17,20 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    
+    'Are you sure you want to delete this item?' => '',
+    'Create' => '',
+    'Create User' => '',
+    'Delete' => '',
+    'Female' => '',
+    'File is too large' => '',
+    'File is too small' => '',
+    'File type not allowed' => '',
+    'Male' => '',
+    'Maximum number of files exceeded' => '',
+    'Reset' => '',
+    'Search' => '',
+    'Update' => '',
+    'Update {modelClass}: ' => '',
+    'Users' => '',
+    'Update Profile' => '@@@@',
 ];

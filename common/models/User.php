@@ -28,6 +28,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     public $password;
+    public $old_password;
     public $confirm_password;
     public $roles;
 
@@ -35,6 +36,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
 		    $scenarios = parent::scenarios();
         $scenarios['registration'] = ['username','email'];
+        $scenarios['settings'] = ['username','email','password','confirm_password'];
         return $scenarios;
     }
     /**
@@ -75,10 +77,10 @@ class User extends ActiveRecord implements IdentityInterface
                  ['email', 'email'],
                  ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
-                 ['password', 'required'],
+                 ['password', 'required','on'=>'update'],
                  ['password', 'string', 'min' => 6],
 
-                 ['confirm_password', 'required'],
+                 ['confirm_password', 'required','on'=>'update'],
                  ['confirm_password', 'string', 'min' => 6],
                  ['confirm_password', 'compare','compareAttribute'=>'password'],
 
@@ -216,6 +218,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('common', 'Username'),
+            'password' => Yii::t('common', 'Password'),
+            'confirm_password' => Yii::t('common', 'Confirm Password'),
+            'email' => Yii::t('common', 'Email')
+        ];
     }
 
     public function getItemStatus(){

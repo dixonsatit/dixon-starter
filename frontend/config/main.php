@@ -11,6 +11,10 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'as locale' => [
+        'class' => 'common\components\LocaleBehavior',
+        'enablePreferredLanguage' => true
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

@@ -63,14 +63,14 @@ class Profile extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => Yii::t('app', 'User ID'),
-            'title' => Yii::t('app', 'Title'),
-            'firstname' => Yii::t('app', 'Firstname'),
-            'lastname' => Yii::t('app', 'Lastname'),
-            'avatar_path' => Yii::t('app', 'Avatar Path'),
-            'avatar_base_url' => Yii::t('app', 'Avatar Base Url'),
-            'locale' => Yii::t('app', 'Locale'),
-            'gender' => Yii::t('app', 'Gender'),
+            'user_id' => Yii::t('common', 'User ID'),
+            'title' => Yii::t('common', 'Title'),
+            'firstname' => Yii::t('common', 'Firstname'),
+            'lastname' => Yii::t('common', 'Lastname'),
+            'avatar_path' => Yii::t('common', 'Avatar Path'),
+            'avatar_base_url' => Yii::t('common', 'Avatar Base Url'),
+            'locale' => Yii::t('common', 'Locale'),
+            'gender' => Yii::t('common', 'Gender'),
         ];
     }
 

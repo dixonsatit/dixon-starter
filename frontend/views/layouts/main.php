@@ -36,15 +36,15 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => Yii::t('common', 'About'), 'url' => ['/site/about']],
+        ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('common', 'Signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']];
     } else {
       $menuItems[] = [
-                'label'=>Yii::t('frontend', 'Language'),
+                'label'=>Yii::t('common', 'Language'),
                 'items'=>array_map(function ($code) {
                     return [
                         'label' => Yii::$app->params['availableLocales'][$code],
@@ -54,7 +54,7 @@ AppAsset::register($this);
                 }, array_keys(Yii::$app->params['availableLocales']))
             ];
         $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+            'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post']
         ];

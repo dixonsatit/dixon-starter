@@ -31,19 +31,26 @@ AppAsset::register($this);
         'brandLabel' => 'DIXON-STARTER',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-            'url' => ['/site/logout'],
-            'linkOptions' => ['data-method' => 'post']
+          'label' => Yii::t('common', 'Account ({username})',['username'=>Yii::$app->user->identity->username]),
+          'items'=>[
+              ['label' => Yii::t('common', 'Profile'), 'url' => ['/profile/index']],
+              ['label' => Yii::t('common', 'Account Settings'), 'url' => ['/profile/settings']],
+              [
+                 'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
+                 'url' => ['/site/logout'],
+                 'linkOptions' => ['data-method' => 'post']
+             ]
+          ]
         ];
     }
     echo Nav::widget([

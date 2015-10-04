@@ -4,8 +4,11 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\User;
+use common\models\ChangePasswordForm;
 use frontend\models\ProfileSearch;
+use yii\widgets\ActiveForm;
 use yii\web\Controller;
+use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -25,7 +28,7 @@ class ProfileController extends Controller
               'class' => AccessControl::className(),
               'rules' => [
                   [
-                      'actions' => ['index','update','avatar-upload','avatar-delete'],
+                      'actions' => ['index','update','settings','change-password','avatar-upload','avatar-delete'],
                       'allow' => true,
                       'roles' => ['@'],
                   ],
@@ -68,32 +71,58 @@ class ProfileController extends Controller
      */
     public function actionIndex()
     {
-        $model = $this->findModel(Yii::$app->user->id);
-        $profile = $model->profile;
-        $model->password = $model->password_hash;
-        $model->confirm_password = $model->password_hash;
-        $oldPass = $model->password_hash;
+        $user = $this->findModel(Yii::$app->user->id);
+        $model = $user->profile;
 
-        if ($model->load(Yii::$app->request->post()) &&
-            $profile->load(Yii::$app->request->post()) &&
-            User::validateMultiple([$model,$profile]))
+        if ($model->load(Yii::$app->request->post()) && $model->save())
         {
-
-            if($oldPass!==$model->password){
-              $model->setPassword($model->password);
-            }
-
-            if($model->save() && $profile->save()){
-              Yii::$app->getSession()->setFlash('success', 'บันทึกเสร็จเรียบร้อย');
-              return $this->redirect(['index']);
-            }else{
-              throw new NotFoundHttpException('พบข้อผิดพลาด!.');
-            }
-
+            Yii::$app->getSession()->setFlash('success', Yii::t('common','Success Profile'));
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
-                'model' => $model,
-                'profile'=> $profile
+                'model' => $model
+            ]);
+        }
+    }
+
+    public function actionSettings()
+    {
+      $model = $this->findModel(Yii::$app->user->id);
+      $profile = $model->profile;
+
+      if ($model->load(Yii::$app->request->post()) &&
+          $profile->load(Yii::$app->request->post()) &&
+          User::validateMultiple([$model,$profile]))
+      {
+        if($model->save() && $profile->save()){
+            Yii::$app->getSession()->setFlash('success', Yii::t('common','Success Profile'));
+            return $this->redirect(['settings']);
+        }
+      }
+
+      return $this->render('setting_form',[
+        'model' => $model,
+        'profile'=> $profile
+      ]);
+    }
+
+    public function actionChangePassword()
+    {
+        $model = new ChangePasswordForm();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            if($model->save()){
+                Yii::$app->getSession()->setFlash('success', Yii::t('common','Success Change Password'));
+                return $this->redirect(['change-password']);
+            }
+        }else{
+            return $this->render('change_password',[
+              'model'=>$model
             ]);
         }
     }
