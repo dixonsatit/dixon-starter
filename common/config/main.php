@@ -1,7 +1,6 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-
     'components' => [
       'fileStorage'=>[
             'class' => 'trntv\filekit\Storage',
@@ -10,20 +9,20 @@ return [
                 'class' => 'common\components\LocalFlysystemBuilder',
                 'path' => '@backend/web/uploads'
             ]
-        ],
+      ],
       'authManager' => [
             'class' => 'yii\rbac\DbManager',
-        ],
-        'cache' => [
+      ],
+      'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'i18n' => [
+      ],
+      'i18n' => [
       			'translations' => [
         				'*' => [
         					'class' => 'yii\i18n\PhpMessageSource',
         					'basePath' => '@common/messages',
         				],
       			],
-    		],
+    	],
     ],
 ];

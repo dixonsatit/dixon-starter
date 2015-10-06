@@ -50,6 +50,15 @@ class ChangePasswordForm extends Model
       return $model->save();
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'old_password' => Yii::t('common', 'Old Password'),
+            'new_password' => Yii::t('common', 'New Password'),
+            'confirm_new_password' => Yii::t('common', 'Confirm New Password')
+        ];
+    }
+
 
     /**
      * Finds user by [[username]]

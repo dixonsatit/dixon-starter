@@ -15,6 +15,11 @@ return [
         'class' => 'common\components\LocaleBehavior',
         'enablePreferredLanguage' => true
     ],
+    'modules' => [
+      'user' => [
+            'class' => 'common\modules\user\Module',
+        ],
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

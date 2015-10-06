@@ -21,7 +21,8 @@
         "vova07/yii2-imperavi-widget": "*",
         "trntv/yii2-file-kit": "*",
         "trntv/yii2-glide": "*",
-        "vova07/yii2-fileapi-widget": "*"
+        "vova07/yii2-fileapi-widget": "*",
+        "kartik-v/yii2-widget-datetimepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

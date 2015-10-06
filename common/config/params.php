@@ -7,4 +7,5 @@ return [
            'en-US'=>'English (US)',
            'th-TH'=>'ไทย',
     ],
+    
 ];

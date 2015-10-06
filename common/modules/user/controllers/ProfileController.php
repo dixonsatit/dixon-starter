@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace common\modules\user\controllers;
 
 use Yii;
 use common\models\User;

@@ -15,6 +15,7 @@ use trntv\filekit\behaviors\UploadBehavior;
  * @property string $avatar_base_url
  * @property string $locale
  * @property integer $gender
+ * @property string $website
  */
 class Profile extends \yii\db\ActiveRecord
 {
@@ -51,7 +52,8 @@ class Profile extends \yii\db\ActiveRecord
         return [
             [['user_id','locale'], 'required'],
             [['gender'], 'integer'],
-            [['firstname', 'title', 'lastname', 'avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
+            [['website'], 'url'],
+            [['firstname', 'title', 'lastname', 'avatar_path', 'avatar_base_url','website'], 'string', 'max' => 255],
             [['locale'], 'string', 'max' => 32],
             ['picture', 'safe']
         ];
@@ -71,6 +73,8 @@ class Profile extends \yii\db\ActiveRecord
             'avatar_base_url' => Yii::t('common', 'Avatar Base Url'),
             'locale' => Yii::t('common', 'Locale'),
             'gender' => Yii::t('common', 'Gender'),
+            'picture' => Yii::t('common', 'Profile picture'),
+            'website' => Yii::t('common', 'Website'),
         ];
     }
 
