@@ -31,11 +31,12 @@ AppAsset::register($this);
         'brandLabel' => 'DIXON-STARTER',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-default navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-topr',
         ],
     ]);
     $menuItems = [
         ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
+        ['label' => Yii::t('common', 'Content'), 'url' => ['/content/default/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -58,11 +59,18 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
+    <?php if(isset($this->params['breadcrumbs'])): ?>
+    <div class="main-container-nav">
+      <div class="container container-nav">
+        <i class="glyphicon glyphicon-list-alt"></i><?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+
+    <div class="container">
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
@@ -70,7 +78,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Dimple Techonogy Co., Ltd. <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -5,10 +5,10 @@ namespace backend\modules\content\controllers;
 use Yii;
 use common\models\ArticleCategory;
 use backend\modules\content\models\ArticleCategorySearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * ArticleCategoryController implements the CRUD actions for ArticleCategory model.
@@ -21,16 +21,7 @@ class ArticleCategoryController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@']
-                    ],
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -72,11 +63,15 @@ class ArticleCategoryController extends Controller
     {
         $model = new ArticleCategory();
 
+        $categories = ArticleCategory::find()->noParents()->all();
+        $categories = ArrayHelper::map($categories, 'id', 'title');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'categories' => $categories,
             ]);
         }
     }
@@ -91,11 +86,16 @@ class ArticleCategoryController extends Controller
     {
         $model = $this->findModel($id);
 
+        $categories = ArticleCategory::find()->noParents()->andWhere(['not in', 'id', $id])->all();
+        $categories = ArrayHelper::map($categories, 'id', 'title');
+
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'categories' => $categories,
             ]);
         }
     }
