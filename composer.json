@@ -19,10 +19,17 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "vova07/yii2-imperavi-widget": "*",
+        "michelf/php-smartypants": "dev-lib",
         "trntv/yii2-file-kit": "*",
         "trntv/yii2-glide": "*",
         "vova07/yii2-fileapi-widget": "*",
-        "kartik-v/yii2-widget-datetimepicker": "*"
+        "mdmsoft/yii2-autonumber": "~1.0",
+        "creocoder/yii2-taggable": "^2.0",
+        "nezhelskoy/yii2-highlight": "*",
+        "kartik-v/yii2-widget-select2": "@dev",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-krajee-base": "dev-master",
+        "kartik-v/yii2-markdown": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

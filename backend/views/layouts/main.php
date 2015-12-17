@@ -36,12 +36,17 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
+        ['label' => 'Content', 'items' => [
+          ['label' => 'Post', 'url' => ['/cms/post/index']],
+          ['label' => 'Page', 'url' => ['/cms/page/index']],
+          ['label' => 'Category', 'url' => ['/cms/category/index']],
+        ]],
         ['label' => Yii::t('backend', 'Management'), 'items' => [
               ['label' => Yii::t('backend', 'Manage Users'), 'url' => ['/manage-user/index']],
               ['label' => Yii::t('common', 'Content'), 'url' => ['/content/default/index']],
         ]],
-
     ];
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {

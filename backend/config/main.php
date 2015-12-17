@@ -16,8 +16,14 @@ return [
         'enablePreferredLanguage' => true
     ],
     'modules' => [
-      'user' => [
+       'markdown' => [
+            'class' => 'kartik\markdown\Module',
+        ],
+       'user' => [
             'class' => 'common\modules\user\Module',
+        ],
+        'cms' => [
+            'class' => 'backend\modules\cms\Module',
         ],
         'content' => [
             'class' => 'backend\modules\content\Module',
