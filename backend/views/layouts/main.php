@@ -5,6 +5,7 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -28,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'DIXON-STARTER',
+        'brandLabel' => Html::img(Url::base().'/images/logo-dimple-new.png'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-fixed-topr',

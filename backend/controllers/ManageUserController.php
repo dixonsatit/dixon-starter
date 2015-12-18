@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use pheme\grid\actions\ToggleAction;
 
 /**
  * ManageUserController implements the CRUD actions for User model.
@@ -27,12 +28,30 @@ class ManageUserController extends Controller
         ];
     }
 
+    public function actions(){
+      return [
+        'toggle' => [
+            'class' => ToggleAction::className(),
+            'modelClass' => User::className(),
+            'attribute'=>'status',
+            'setFlash' => true,
+            'onValue'=>'10',
+            'onValue'=>'0'
+        ]
+      ];
+    }
+
     /**
      * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
+        // $model = User::findOne(1);
+        // $model->status =10;
+        // $model->save();
+        // print_r($model->getErrors());
+
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

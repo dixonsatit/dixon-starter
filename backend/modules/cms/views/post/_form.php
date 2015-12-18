@@ -28,6 +28,19 @@ use kartik\datetime\DateTimePicker;
 
     <div class="row">
       <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-body" style="min-height:252px;">
+                <?php echo $form->field($model, 'thumbnail')->widget(
+                    Upload::className(),
+                    [
+                        'url' => ['post/upload'],
+                        'maxFileSize' => 5000000, // 5 Mb
+                    ]);
+                ?>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
           <div class="panel panel-default">
               <div class="panel-body">
                     <?= $form->field($model, 'category_id')->widget(Select2::classname(), [
@@ -57,19 +70,6 @@ use kartik\datetime\DateTimePicker;
                     ]); ?>
               </div>
           </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="panel panel-default">
-            <div class="panel-body" style="min-height:252px;">
-                <?php echo $form->field($model, 'thumbnail')->widget(
-                    Upload::className(),
-                    [
-                        'url' => ['post/upload'],
-                        'maxFileSize' => 5000000, // 5 Mb
-                    ]);
-                ?>
-            </div>
-        </div>
       </div>
     </div>
 

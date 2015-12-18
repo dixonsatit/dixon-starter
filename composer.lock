@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "006d80047294f6214f860c704dffd843",
-    "content-hash": "8fd547b1df0947c5425ee01eec144298",
+    "hash": "a038f2035ce9b68585c4f44de3d4d29d",
+    "content-hash": "df11f874f715aa1da4617e1668d5a7a0",
     "packages": [
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -1248,6 +1248,48 @@
                 "yii2"
             ],
             "time": "2015-12-13 16:32:52"
+        },
+        {
+            "name": "pheme/yii2-toggle-column",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phemellc/yii2-toggle-column.git",
+                "reference": "6fb846a86f76234c63b3d475dc70dd59022718c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phemellc/yii2-toggle-column/zipball/6fb846a86f76234c63b3d475dc70dd59022718c1",
+                "reference": "6fb846a86f76234c63b3d475dc70dd59022718c1",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "\\pheme\\grid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aris Karageorgos",
+                    "email": "aris@phe.me"
+                }
+            ],
+            "description": "Provides a toggle data column and action",
+            "keywords": [
+                "column",
+                "extension",
+                "toggle",
+                "yii2"
+            ],
+            "time": "2014-10-12 15:54:14"
         },
         {
             "name": "psr/http-message",

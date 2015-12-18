@@ -148,3 +148,14 @@ a.desc:after {
   color:gray;
   top:4px;
 }
+
+@media (min-width: 1200px){
+  .container {
+      width: 970px!important;
+  }
+}
+
+.navbar-brand > img {
+    display: block;
+    margin-top: -5px;
+}

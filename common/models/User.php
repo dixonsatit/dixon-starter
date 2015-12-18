@@ -113,7 +113,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username]);
     }
 
     /**
@@ -229,6 +229,10 @@ class User extends ActiveRecord implements IdentityInterface
             'confirm_password' => Yii::t('common', 'Confirm Password'),
             'email' => Yii::t('common', 'Email')
         ];
+    }
+
+    public function getIsActive(){
+      return $this->status == static::STATUS_ACTIVE ? true : false;
     }
 
     public function getItemStatus(){
