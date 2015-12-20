@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\User;
+use common\models\Profile;
 use backend\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -78,23 +79,31 @@ class ManageUserController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new User();
+     public function actionCreate()
+     {
+         $model = new User([
+           'status'=> User::STATUS_ACTIVE
+         ]);
+         $profile = new Profile([
+           'scenario'=>'admin',
+           'locale'=>'en-US'
+         ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->setPassword($model->password);
-            $model->generateAuthKey();
-            if($model->save()){
-              $model->assignment();
-            }
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+         if ($model->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())&& Model::validateMultiple([$model,$profile])) {
+             $model->setPassword($model->password);
+             $model->generateAuthKey();
+             if($model->save()){
+                 $profile->link('user',$model);
+                 $model->assignment();
+             }
+             return $this->redirect(['view', 'id' => $model->id]);
+         } else {
+             return $this->render('create', [
+                 'model' => $model,
+                 'profile'=>$profile
+             ]);
+         }
+     }
 
     /**
      * Updates an existing User model.
@@ -102,29 +111,32 @@ class ManageUserController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $model->getRoleByUser();
-        $model->password = $model->password_hash;
-        $model->confirm_password = $model->password_hash;
-        $oldPass = $model->password_hash;
+     public function actionUpdate($id)
+     {
+         $model = $this->findModel($id);
+         $model->getRoleByUser();
+         $profile = $model->profile;
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-          if($oldPass!==$model->password){
-            $model->setPassword($model->password);
-          }
-          if($model->save()){
-            $model->assignment();
-          }
+         $model->password = $model->password_hash;
+         $model->confirm_password = $model->password_hash;
+         $oldPass = $model->password_hash;
 
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+           if ($model->load(Yii::$app->request->post()) && $profile->load(Yii::$app->request->post())&& Model::validateMultiple([$model,$profile])) {
+           if($oldPass!==$model->password){
+             $model->setPassword($model->password);
+           }
+           if($model->save() && $profile->save()){
+             $model->assignment();
+           }
+
+             return $this->redirect(['view', 'id' => $model->id]);
+         } else {
+             return $this->render('update', [
+                 'model' => $model,
+                 'profile'=>$profile
+             ]);
+         }
+     }
 
     /**
      * Deletes an existing User model.
