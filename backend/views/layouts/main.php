@@ -54,7 +54,7 @@ AppAsset::register($this);
         $menuItems[] = [
           'label' => Yii::t('common', 'Account ({username})',['username'=>Yii::$app->user->identity->username]),
           'items'=>[
-              ['label' => Yii::t('common', 'Settings'), 'url' => ['/profile/index']],
+              ['label' => Yii::t('common', 'Settings'), 'url' => ['/user/profile/index']],
               [
                  'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
                  'url' => ['/site/logout'],

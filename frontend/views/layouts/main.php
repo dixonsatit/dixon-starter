@@ -53,11 +53,17 @@ AppAsset::register($this);
                     ];
                 }, array_keys(Yii::$app->params['availableLocales']))
             ];
-        $menuItems[] = [
-            'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
-            'url' => ['/site/logout'],
-            'linkOptions' => ['data-method' => 'post']
-        ];
+            $menuItems[] = [
+              'label' => Yii::t('common', 'Account ({username})',['username'=>Yii::$app->user->identity->username]),
+              'items'=>[
+                  ['label' => Yii::t('common', 'Settings'), 'url' => ['/user/profile/index']],
+                  [
+                     'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
+                     'url' => ['/site/logout'],
+                     'linkOptions' => ['data-method' => 'post']
+                 ]
+              ]
+            ];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

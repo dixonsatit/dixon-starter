@@ -13,9 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="panel panel-default" >
-  <div class="panel-heading">
+  <!-- <div class="panel-heading">
     <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-  </div>
+  </div> -->
   <div class="panel-body">
     <?php $form = ActiveForm::begin(); ?>
     <?php echo $form->field($model, 'picture')->widget(
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php ActiveForm::end(); ?>
   </div>
-  <div class="panel-footer">
+  <!-- <div class="panel-footer">
 
-  </div>
+  </div> -->
 </div>

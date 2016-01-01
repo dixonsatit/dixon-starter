@@ -8,10 +8,7 @@ use yii\bootstrap\Nav;
 <?php $this->beginContent('@app/views/layouts/main.php'); ?>
 <div class="row">
   <div class="col-sm-4 col-md-3">
-    <div class="panel panel-default" >
-      <div class="panel-heading">
-        <h3  class="panel-title panel-title-sidebar"><?= Yii::t('common','Account') ?></h3>
-      </div>
+
         <?php
         echo Nav::widget([
             'encodeLabels'=>false,
@@ -29,13 +26,10 @@ use yii\bootstrap\Nav;
                     'url' => ['profile/change-password'],
                 ]
             ],
-            'options' => ['class' =>'nav-pillss nav-stacked'], // set this to nav-tab to get tab-styled navigation
+            'options' => ['class' =>'nav-pills nav-stacked'], // set this to nav-tab to get tab-styled navigation
         ]);
          ?>
-      <div class="panel-footer">
 
-      </div>
-    </div>
 
   </div>
   <div class="col-sm-8 col-md-9">
