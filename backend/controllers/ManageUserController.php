@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\base\Model;
 use common\models\User;
 use common\models\Profile;
 use backend\models\UserSearch;
@@ -26,6 +27,15 @@ class ManageUserController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access'=>[
+              'class'=>AccessControl::className(),
+              'rules'=>[
+                [
+                  'allow'=>true,
+                  'roles'=>['@']
+                ]
+              ]
+            ]
         ];
     }
 
@@ -85,7 +95,6 @@ class ManageUserController extends Controller
            'status'=> User::STATUS_ACTIVE
          ]);
          $profile = new Profile([
-           'scenario'=>'admin',
            'locale'=>'en-US'
          ]);
 

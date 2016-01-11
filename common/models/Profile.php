@@ -50,7 +50,7 @@ class Profile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id','locale'], 'required'],
+            [['locale'], 'required'],
             [['gender'], 'integer'],
             [['website'], 'url'],
             [['firstname', 'title', 'lastname', 'avatar_path', 'avatar_base_url','website'], 'string', 'max' => 255],
@@ -93,5 +93,12 @@ class Profile extends \yii\db\ActiveRecord
           self::GENDER_MALE => Yii::t('app','Male'),
           self::GENDER_FEMALE => Yii::t('app','Female')
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getUser(){
+      return $this->hasOne(User::className(),['id'=>'user_id']);
     }
 }
