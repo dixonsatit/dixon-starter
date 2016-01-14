@@ -40,8 +40,8 @@ AppAsset::register($this);
         ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => Yii::t('common', 'Signup'), 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('common', 'Signup'), 'url' => ['/user/registration/index']];
+        $menuItems[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/user/auth/login']];
     } else {
       $menuItems[] = [
                 'label'=>Yii::t('common', 'Language'),
@@ -59,7 +59,7 @@ AppAsset::register($this);
                   ['label' => Yii::t('common', 'Settings'), 'url' => ['/user/profile/index']],
                   [
                      'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
-                     'url' => ['/site/logout'],
+                     'url' => ['/user/auth/logout'],
                      'linkOptions' => ['data-method' => 'post']
                  ]
               ]

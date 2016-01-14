@@ -4,8 +4,8 @@ namespace common\modules\user\controllers;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
-use common\models\Profile;
+use common\modules\user\models\User;
+use common\modules\user\models\Profile;
 use backend\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -58,11 +58,6 @@ class ManageUserController extends Controller
      */
     public function actionIndex()
     {
-        // $model = User::findOne(1);
-        // $model->status =10;
-        // $model->save();
-        // print_r($model->getErrors());
-
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -123,6 +118,7 @@ class ManageUserController extends Controller
      public function actionUpdate($id)
      {
          $model = $this->findModel($id);
+         $model->createConfirmationToken();
          $model->getRoleByUser();
          $profile = $model->profile;
 
