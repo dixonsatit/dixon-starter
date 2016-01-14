@@ -1,7 +1,8 @@
 <?php
 namespace common\modules\user\models;
 
-use common\models\User;
+use Yii;
+use common\modules\user\models\User;
 use yii\base\Model;
 
 /**
@@ -50,7 +51,7 @@ class PasswordResetRequestForm extends Model
                     return Yii::$app->mailer->compose([
                         'html' => 'passwordResetToken-html',
                         'text' => 'passwordResetToken-text'],
-                        ['token' => $token,'user'=>$user])
+                        ['user'=>$user])
                       ->setTo($this->email)
                       ->setFrom([Yii::$app->params['supportEmail'] => 'DX-Starter'])
                       ->setSubject('Password reset')

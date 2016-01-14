@@ -87,7 +87,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['confirm_password', 'string', 'min' => 6],
             ['confirm_password', 'compare','compareAttribute'=>'password'],
 
-            ['confirmed_email_at', 'integer'],
+            [['confirmed_email_at','password_reset_at'], 'integer'],
             ['roles', 'safe']
         ];
     }

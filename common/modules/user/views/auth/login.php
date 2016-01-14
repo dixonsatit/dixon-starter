@@ -11,12 +11,13 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+
+
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-offset-4 col-lg-4">
+            <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
                 <?= $form->field($model, 'username') ?>
@@ -25,14 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['auth/request-password-reset']) ?>.
-                </div>
+
 
                 <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-lg btn-block', 'name' => 'login-button']) ?>
                 </div>
-
+                <div style="color:#999;margin:1em 0">
+                    Don't have an account? <?= Html::a('Sign up', ['/user/registration/index']) ?> |
+                    <?= Html::a('Forgot password?', ['auth/request-password-reset']) ?>
+                </div>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

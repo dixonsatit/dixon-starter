@@ -2,15 +2,15 @@
 namespace common\modules\user\controllers;
 
 use Yii;
-use common\modules\user\models\LoginForm;
-use common\modules\user\models\PasswordResetRequestForm;
-use common\modules\user\models\ResetPasswordForm;
-use common\modules\user\models\SignupForm;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\base\InvalidParamException;
+use yii\web\BadRequestHttpException;
+use common\modules\user\models\LoginForm;
+use common\modules\user\models\SignupForm;
+use common\modules\user\models\ResetPasswordForm;
+use common\modules\user\models\PasswordResetRequestForm;
 
 /**
  * Site controller
@@ -47,7 +47,6 @@ class AuthController extends Controller
             ],
         ];
     }
-
 
     /**
      * Logs in a user.
@@ -93,8 +92,7 @@ class AuthController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
+                return $this->redirect(['/user/auth/login']);
             } else {
                 Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
             }
@@ -123,7 +121,7 @@ class AuthController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->session->setFlash('success', 'New password was saved.');
 
-            return $this->goHome();
+            return $this->redirect(['/user/auth/login']);
         }
 
         return $this->render('resetPassword', [

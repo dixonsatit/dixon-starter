@@ -1,7 +1,8 @@
 <?php
 namespace common\modules\user\models;
 
-use common\models\User;
+//use common\models\User;
+use common\modules\user\models\User;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use Yii;
@@ -58,6 +59,7 @@ class ResetPasswordForm extends Model
     {
         $user = $this->_user;
         $user->setPassword($this->password);
+        $user->password_reset_at =  time();
         $user->removePasswordResetToken();
 
         return $user->save(false);
