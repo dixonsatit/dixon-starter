@@ -11,10 +11,6 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-
-
-
-
     <div class="row">
         <div class="col-lg-offset-4 col-lg-4">
             <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
@@ -25,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-lg btn-block', 'name' => 'login-button']) ?>

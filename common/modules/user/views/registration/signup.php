@@ -12,12 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-offset-4 col-lg-4">
+          <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
                 <?= $form->field($model, 'username') ?>
@@ -27,7 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary btn-lg btn-block', 'name' => 'signup-button']) ?>
+                </div>
+                <div class="text-center" style="color:#999;margin:1em 0">
+                    Already have an account?  <?= Html::a('Log In', ['/user/auth/login']) ?>
+
                 </div>
 
             <?php ActiveForm::end(); ?>
