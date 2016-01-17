@@ -37,7 +37,10 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'v1/todo'
+                    'controller' => [
+                        'v1/todo',
+                        'v1/user'
+                      ]
                 ]
             ],
         ],
@@ -47,7 +50,7 @@ return [
             ]
         ],
         'response' => [
-            'format' => 'json'
+            'format' => yii\web\Response::FORMAT_JSON,
         ]
     ],
     'params' => $params,

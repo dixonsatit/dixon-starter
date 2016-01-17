@@ -90,4 +90,13 @@ class AuthItem extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AuthItemChild::className(), ['child' => 'name']);
     }
+
+    /**
+     * @inheritdoc
+     * @return AuthItemQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new AuthItemQuery(get_called_class());
+    }
 }

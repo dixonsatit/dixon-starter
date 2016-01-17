@@ -14,7 +14,7 @@ use Yii;
  *
  * @property AuthItem[] $authItems
  */
-class AuthRule extends \yii\db\ActiveRecord
+class Rule extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -43,10 +43,10 @@ class AuthRule extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('app', 'Name'),
-            'data' => Yii::t('app', 'Data'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'name' => Yii::t('user', 'Name'),
+            'data' => Yii::t('user', 'Data'),
+            'created_at' => Yii::t('user', 'Created At'),
+            'updated_at' => Yii::t('user', 'Updated At'),
         ];
     }
 
@@ -56,5 +56,14 @@ class AuthRule extends \yii\db\ActiveRecord
     public function getAuthItems()
     {
         return $this->hasMany(AuthItem::className(), ['rule_name' => 'name']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return RuleQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new RuleQuery(get_called_class());
     }
 }
