@@ -43,7 +43,7 @@ AppAsset::register($this);
           ['label' => 'Category', 'url' => ['/cms/category/index']],
         ]],
         ['label' => Yii::t('backend', 'Management'), 'items' => [
-              ['label' => Yii::t('backend', 'Manage Users'), 'url' => ['/manage-user/index']],
+              ['label' => Yii::t('backend', 'Manage Users'), 'url' => ['/user/manage-user/index']],
               ['label' => Yii::t('common', 'Content'), 'url' => ['/content/default/index']],
         ]],
     ];

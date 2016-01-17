@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use common\modules\user\models\User;
 use common\modules\user\models\Profile;
-use backend\models\UserSearch;
+use common\modules\user\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

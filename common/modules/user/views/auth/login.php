@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <div class="row">
-        <div class="col-lg-offset-4 col-lg-4">
+        <div class="col-md-offset-4 col-md-5 col-lg-offset-4 col-lg-4">
             <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 

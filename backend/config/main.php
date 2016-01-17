@@ -16,6 +16,10 @@ return [
         'enablePreferredLanguage' => true
     ],
     'modules' => [
+        'rbac' => [
+            'class' => 'dektrium\rbac\Module',
+            'admins'=>['admin']
+        ],
        'markdown' => [
             'class' => 'kartik\markdown\Module',
         ],
@@ -30,10 +34,10 @@ return [
         ],
     ],
     'components' => [
-
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\modules\user\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['user/auth/login'],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

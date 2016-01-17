@@ -159,3 +159,12 @@ a.desc:after {
     display: block;
     margin-top: -5px;
 }
+
+.nav-tabs > li.active > a,.nav-tabs > li.active > a:hover{
+  font-weight: bold!important;
+  font-weight: bold;
+  color: #333;
+  border-color: #54B164 #e5e5e5 transparent;
+  border-radius: 3px 3px 0 0;
+  border-width: 3px 1px 1px;
+}

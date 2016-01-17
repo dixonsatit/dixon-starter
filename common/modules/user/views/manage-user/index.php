@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password_reset_token',
              'email:email',
              //'status',
+             'created_at:dateTime',
              [
                'attribute'=>'status',
                'format'=>'html',
@@ -42,14 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                  return $model->statusName=='Active' ?'<span class="text-success">'.$model->statusName.'</span>' : $model->statusName ;
                }
              ],
-             'created_at:dateTime',
+
             // 'updated_at',
-            [
-             'class' => '\pheme\grid\ToggleColumn',
-             'attribute' => 'status',
-             // Uncomment if  you don't want AJAX
-             //'enableAjax' => false,
-            ],
             [
               'class' => 'yii\grid\ActionColumn',
               'options'=>['style'=>'width:120px;'],

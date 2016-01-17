@@ -30,7 +30,8 @@
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-krajee-base": "dev-master",
         "kartik-v/yii2-markdown": "dev-master",
-        "pheme/yii2-toggle-column": "*"
+        "pheme/yii2-toggle-column": "*",
+        "dektrium/yii2-rbac": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
