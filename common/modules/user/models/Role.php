@@ -35,4 +35,10 @@ class Role extends AuthItem
             [['name', 'rule_name'], 'string', 'max' => 64]
         ];
     }
+
+    public static function find()
+    {
+        $query = new AuthItemQuery(get_called_class());
+        return $query->byRole();
+    }
 }

@@ -9,11 +9,17 @@ namespace common\modules\user\models;
  */
 class AuthItemQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function byRole()
     {
-        $this->andWhere('[[status]]=1');
+        $this->andWhere('[[type]]=1');
         return $this;
-    }*/
+    }
+    
+    public function byPermission()
+    {
+        $this->andWhere('[[type]]=2');
+        return $this;
+    }
 
     /**
      * @inheritdoc

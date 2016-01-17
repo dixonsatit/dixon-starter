@@ -13,7 +13,7 @@ use Yii;
  *
  * @property AuthItem $itemName
  */
-class AuthAssignment extends \yii\db\ActiveRecord
+class Assignment extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -41,9 +41,9 @@ class AuthAssignment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'item_name' => Yii::t('app', 'Item Name'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'item_name' => Yii::t('rbac', 'Item Name'),
+            'user_id' => Yii::t('rbac', 'User ID'),
+            'created_at' => Yii::t('rbac', 'Created At'),
         ];
     }
 
@@ -53,5 +53,14 @@ class AuthAssignment extends \yii\db\ActiveRecord
     public function getItemName()
     {
         return $this->hasOne(AuthItem::className(), ['name' => 'item_name']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return AssignmentQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new AssignmentQuery(get_called_class());
     }
 }

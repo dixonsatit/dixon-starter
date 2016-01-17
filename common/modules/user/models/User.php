@@ -324,6 +324,10 @@ class User extends ActiveRecord implements IdentityInterface
       return $this->hasOne(Profile::className(),['user_id'=>'id']);
     }
 
+    public function getAssignment(){
+      return $this->hasMany(Assignment::className(),['user_id'=>'id']);
+    }
+
     public function createConfirmationToken(){
       $token = new Token([
         'type' => Token::TYPE_CONFIRMATION

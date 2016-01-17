@@ -3,19 +3,19 @@
 namespace common\modules\user\controllers;
 
 use Yii;
-use common\modules\user\models\Permission;
-use common\modules\user\models\PermissionSearch;
+use common\modules\user\models\User;
+use common\modules\user\models\AssignmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PermissionController implements the CRUD actions for Permission model.
+ * AssignmentController implements the CRUD actions for User model.
  */
-class PermissionController extends Controller
+class AssignmentController extends Controller
 {
-    public $layout = 'rbac'; 
-
+    public $layout = 'rbac';
+    
     public function behaviors()
     {
         return [
@@ -29,12 +29,12 @@ class PermissionController extends Controller
     }
 
     /**
-     * Lists all Permission models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PermissionSearch();
+        $searchModel = new AssignmentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,8 +44,8 @@ class PermissionController extends Controller
     }
 
     /**
-     * Displays a single Permission model.
-     * @param string $id
+     * Displays a single User model.
+     * @param integer $id
      * @return mixed
      */
     public function actionView($id)
@@ -56,16 +56,16 @@ class PermissionController extends Controller
     }
 
     /**
-     * Creates a new Permission model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Permission();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -74,9 +74,9 @@ class PermissionController extends Controller
     }
 
     /**
-     * Updates an existing Permission model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -84,7 +84,7 @@ class PermissionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -93,9 +93,9 @@ class PermissionController extends Controller
     }
 
     /**
-     * Deletes an existing Permission model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -106,15 +106,15 @@ class PermissionController extends Controller
     }
 
     /**
-     * Finds the Permission model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Permission the loaded model
+     * @param integer $id
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Permission::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class RoleController extends Controller
 {
+    public $layout = 'rbac';
+    
     public function behaviors()
     {
         return [

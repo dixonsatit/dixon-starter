@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class RuleController extends Controller
 {
+    public $layout = 'rbac'; 
+
     public function behaviors()
     {
         return [
