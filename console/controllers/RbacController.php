@@ -23,16 +23,21 @@ class RbacController extends Controller
           $auth->add($manager);
           Console::outPut(Console::renderColoredString("%g - Create Role Manager%n"));
 
-          $admin = $auth->createRole('admin');
+          $admin = $auth->createRole('Admin');
           $auth->add($admin);
           Console::outPut(Console::renderColoredString("%g - Create Role Admin%n"));
 
+          $updatePost = $auth->createPermission('updatePost');
+          $updatePost->description = 'Update post';
+          $auth->add($updatePost);
+
+          $auth->addChild($user,$updatePost);
           $auth->addChild($manager, $user);
           $auth->addChild($admin, $manager);
 
-          $auth->assign($user, 3);
+          $auth->assign($user, 1);
           $auth->assign($manager, 2);
-          $auth->assign($admin, 1);
+          $auth->assign($admin, 3);
           Console::outPut(Console::renderColoredString("%g - Asignment user id 1,2,3 %n"));
 
           Console::outPut(Console::renderColoredString("%gSuccess%n"));

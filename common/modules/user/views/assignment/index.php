@@ -8,22 +8,19 @@ use yii\grid\GridView;
 /* @var $searchModel common\modules\user\models\AssignmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('rbac', 'Users');
+$this->title = Yii::t('rbac', 'Assignments');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a(Yii::t('rbac', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
-
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions'=>['class'=>'table table-condensed'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
@@ -32,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=>'username',
               'format'=>'raw',
               'value'=>function($model){
-                return '<strong>'.ucfirst($model->username).'</strong> &lt;'.$model->email.'&gt;';
+                return Html::a('<strong>'.ucfirst($model->username).'</strong> &lt;'.$model->email.'&gt;',['/user/assignment/view','id'=>$model->id]);
               }
             ],
             [
-              'label'=>'test',
+              'label'=>'Roles',
               'format'=>'html',
               'value'=>function($model){
                 $roles =  ArrayHelper::map($model->assignment,'user_id','item_name');
@@ -47,6 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 return implode(',', $labelHtml);
               }
             ],
+            // [
+            //   'label'=>'Roles',
+            //   'format'=>'raw',
+            //   'value'=>function($model) use($roles){
+            //     $model->id = ArrayHelper::map(Yii::$app->authmanager->getRolesByUser($model->id),'name','name');
+            //     return Html::activeCheckboxList($model, 'id', $roles);
+            //   }
+            // ]
             //'email:email',
             // 'auth_key',
             // 'password_hash',

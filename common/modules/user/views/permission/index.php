@@ -14,26 +14,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a(Yii::t('user', 'Create Permission'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions'=>['class'=>'table table-condensed'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+          ['class' => 'yii\grid\SerialColumn'],
+          'name',
+          //'description:ntext',
+          'rule_name',
+          //'data:ntext',
+          // 'created_at',
+          // 'updated_at',
 
-            'name',
-            'type',
-            'description:ntext',
-            'rule_name',
-            'data:ntext',
-            // 'created_at',
-            // 'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+              'class' => 'yii\grid\ActionColumn',
+              'header' => Html::a('<i class="glyphicon glyphicon-plus"></i> '.Yii::t('user', 'Create Permission'), ['create'], ['class' => 'btn btn-success btn-sm btn-block']),
+              'options' => ['style'=>'width:120px;'],
+              'buttonOptions' => ['class'=>'btn btn-default'],
+              'template' => '<div class="btn-group btn-group-sm text-center" role="group"> {view} {update} {delete} </div>'
+            ],
         ],
     ]); ?>
 

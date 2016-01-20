@@ -3,7 +3,7 @@
 namespace common\modules\user\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "auth_assignment".
  *
@@ -62,5 +62,13 @@ class Assignment extends \yii\db\ActiveRecord
     public static function find()
     {
         return new AssignmentQuery(get_called_class());
+    }
+
+    public static function getAllItemsAssigned($user_id){
+      $assigned = [];
+      $authManager = Yii::$app->authManager;
+      $assigned['Roles'] = ArrayHelper::map($authManager->getRolesByUser($user_id),'name','name');
+      $assigned['Permissions'] = ArrayHelper::map($authManager->getPermissionsByUser($user_id),'name','name');
+      return $assigned;
     }
 }

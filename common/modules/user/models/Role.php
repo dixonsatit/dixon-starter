@@ -29,7 +29,7 @@ class Role extends AuthItem
     public function rules()
     {
         return [
-            [['name', 'type'], 'required'],
+            [['name'], 'required'],
             [['type', 'created_at', 'updated_at'], 'integer'],
             [['description', 'data'], 'string'],
             [['name', 'rule_name'], 'string', 'max' => 64]

@@ -277,6 +277,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function getItemStatus(){
       return [
         self::STATUS_ACTIVE => 'Active',
+        self::STATUS_UNCONFIRMED => 'Unconfirmed',
         self::STATUS_BLOCKED => 'Blocked'
       ];
     }

@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class RoleController extends Controller
 {
     public $layout = 'rbac';
-    
+
     public function behaviors()
     {
         return [
@@ -64,7 +64,11 @@ class RoleController extends Controller
     {
         $model = new Role();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $authManager = Yii::$app->authManager;
+            $role = $authManager->createRole($model->name);
+            $role->description = $model->description;
+            $authManager->add($role);
             return $this->redirect(['view', 'id' => $model->name]);
         } else {
             return $this->render('create', [

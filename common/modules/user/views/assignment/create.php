@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = Yii::t('rbac', 'Create User');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('rbac', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$roles = Yii::$app->authmanager->getRoles();
+print_r($roles);
 ?>
 <div class="user-create">
 

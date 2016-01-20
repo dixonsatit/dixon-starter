@@ -3,7 +3,7 @@
 namespace common\modules\user\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "auth_item".
  *
@@ -98,5 +98,15 @@ class AuthItem extends \yii\db\ActiveRecord
     public static function find()
     {
         return new AuthItemQuery(get_called_class());
+    }
+
+    public static function getAllItemsAvaliable(){
+      $avaliable = [];
+      $authManager = Yii::$app->authManager;
+      $roles = ArrayHelper::map($authManager->getRoles(),'name','name');
+      $permissions = ArrayHelper::map($authManager->getPermissions(),'name','name');
+      $avaliable['Roles'] = $roles;
+      $avaliable['Permissions'] = $permissions;
+      return $avaliable;
     }
 }

@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                'format'=>'html',
                'filter'=>$searchModel->itemStatus,
                'value'=>function($model){
-                 return $model->statusName=='Active' ?'<span class="text-success">'.$model->statusName.'</span>' : $model->statusName ;
+                 return '<span class="label label-'.($model->statusName=='Active'?'success':'danger').' label-as-badge">'.$model->statusName.'</span>';
                }
              ],
 
