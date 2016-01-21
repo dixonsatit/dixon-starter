@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  */
 class PermissionController extends Controller
 {
-    public $layout = 'rbac'; 
+    public $layout = 'rbac';
 
     public function behaviors()
     {
@@ -64,7 +64,11 @@ class PermissionController extends Controller
     {
         $model = new Permission();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $authManager = Yii::$app->authManager;
+            $role = $authManager->createPermission($model->name);
+            $role->description = $model->description;
+            $authManager->add($role);
             return $this->redirect(['view', 'id' => $model->name]);
         } else {
             return $this->render('create', [
@@ -82,9 +86,15 @@ class PermissionController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+        $authManager = Yii::$app->authManager;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $perm = $authManager->getPermission($model->getOldAttribute('name'));
+            if($perm != null){
+              $perm->name = $model->name;
+              $perm->description = $model->description;
+              $authManager->update($model->getOldAttribute('name'),$perm);
+            }
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

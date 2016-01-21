@@ -10,7 +10,7 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('rbac', 'Assignments');
 $this->params['breadcrumbs'][] = $this->title;
-
+$authManager = Yii::$app->authManager;
 ?>
 <div class="user-index">
 
@@ -22,8 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'tableOptions'=>['class'=>'table table-condensed'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
             //'id',
+            [
+              'attribute'=>'id',
+              'options'=>['style'=>'width:50px;'],
+              'contentOptions'=>['class'=>'text-center']
+            ],
             //'username',
             [
               'attribute'=>'username',
@@ -35,13 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
               'label'=>'Roles',
               'format'=>'html',
-              'value'=>function($model){
-                $roles =  ArrayHelper::map($model->assignment,'user_id','item_name');
+              'value'=>function($model) use ($authManager){
+                $roles =  ArrayHelper::map($authManager->getAssignments($model->id),'roleName','roleName');
                 $labelHtml=[];
                 foreach ($roles as $key => $value) {
-                  $labelHtml[] = '<span class="label label-primary">'.$value.'</span>';
+                  $labelHtml[] = '<span class="label-as-badge label label-success">'.$value.'</span>';
                 }
-                return implode(',', $labelHtml);
+                return implode(' ', $labelHtml);
               }
             ],
             // [

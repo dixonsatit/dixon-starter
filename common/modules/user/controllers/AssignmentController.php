@@ -28,7 +28,7 @@ class AssignmentController extends Controller
                 'actions' => [
                     'delete' => ['post'],
                     'assigned' => ['post'],
-                    'assigned' => ['post'],
+                    'revoke' => ['post'],
                 ],
             ],
         ];
@@ -102,6 +102,7 @@ class AssignmentController extends Controller
         'errors' => $errors
       ];
     }
+
     public function actionRevoke(){
       $roles =  Yii::$app->request->post('roleName',[]);
       $user_id =  Yii::$app->request->post('userId');

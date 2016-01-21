@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\user\models\Role */
@@ -10,19 +10,20 @@ use yii\widgets\ActiveForm;
 
 <div class="role-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+  <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+  <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
 
-    <?= $form->field($model, 'rule_name')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'rule_name')->textInput(['maxlength' => true]) ?>
 
-  
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('user', 'Create') : Yii::t('user', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
 
-    <?php ActiveForm::end(); ?>
+
+  <div class="form-group text-right">
+      <?= Html::submitButton($model->isNewRecord ? Yii::t('user', 'Create Permission') : Yii::t('user', 'Update Permission'), ['class' =>($model->isNewRecord ? 'btn btn-success' : 'btn btn-primary').' btn-lg']) ?>
+  </div>
+
+  <?php ActiveForm::end(); ?>
 
 </div>
