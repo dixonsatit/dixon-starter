@@ -5,9 +5,10 @@ use yii\helpers\Json;
 $rbac = RbacAsset::register($this);
 $this->title = Yii::t('rbac', 'Assignments');
 ?>
-   <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 <div class="jumbotron well" style="overflow: scroll;">
   <span id='tree'></span>
+  <div id="body"></div>
 </div>
 <?php
 $properties = Json::htmlEncode([

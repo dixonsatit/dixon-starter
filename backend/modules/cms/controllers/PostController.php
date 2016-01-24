@@ -8,6 +8,7 @@ use backend\modules\cms\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use vova07\imperavi\actions\GetAction;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
 use trntv\filekit\actions\ViewAction;
@@ -43,6 +44,29 @@ class PostController extends Controller
 
     public function actions(){
       return [
+        'image-upload' => [
+          'class' => 'vova07\imperavi\actions\UploadAction',
+          'url' => Yii::$app->getModule('cms')->uploadUrl.'/uploads/images/', // Directory URL address, where files are stored.
+          'path' => '@webroot/uploads/images' // Or absolute path to directory where files are stored.
+        ],
+        'file-upload' => [
+          'class' => 'vova07\imperavi\actions\UploadAction',
+          'url' => Yii::$app->getModule('cms')->uploadUrl.'/uploads/files/',
+          'path' => '@webroot/uploads/files',
+          'uploadOnlyImage' => false,
+        ],
+        'images-get' => [
+            'class' => GetAction::className(),
+            'url' => Yii::$app->getModule('cms')->uploadUrl.'/uploads/images/', // Directory URL address, where files are stored.
+            'path' => '@webroot/uploads/images', // Or absolute path to directory where files are stored.
+            'type' => GetAction::TYPE_IMAGES,
+        ],
+        'files-get' => [
+           'class' => GetAction::className(),
+            'url' => Yii::$app->getModule('cms')->uploadUrl.'/uploads/files/', // Directory URL address, where files are stored.
+            'path' => '@webroot/uploads/files', // Or absolute path to directory where files are stored.
+            'type' => GetAction::TYPE_FILES,
+       ],
         'upload'=>[
            'class' => UploadAction::className(),
              'deleteRoute' => 'file-delete',
@@ -68,6 +92,8 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
+
+        
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

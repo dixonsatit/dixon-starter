@@ -18,12 +18,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
+
     </p>
 <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'tableOptions'=>['class'=>'table table-condensed'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -46,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             // 'updated_at',
             [
+              'header'=> Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success btn-sm btn-block']),
               'class' => 'yii\grid\ActionColumn',
               'options'=>['style'=>'width:120px;'],
               'buttonOptions'=>['class'=>'btn btn-default'],

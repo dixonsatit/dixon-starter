@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a88b9bfb58cfdc68f8c05ec5b1464f94",
-    "content-hash": "e200e3ccdfc1f8572f6317ea83086640",
+    "hash": "9360e0adc8d850c2e846e2ba0126ba5f",
+    "content-hash": "214f6a48a94633d1f6c9efbf23b225d8",
     "packages": [
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -168,16 +168,84 @@
             ]
         },
         {
+            "name": "bower-asset/d3",
+            "version": "v3.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mbostock/d3.git",
+                "reference": "a40a611d6b9fc4ff3815ca830d86b6c00d130995"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mbostock/d3/zipball/a40a611d6b9fc4ff3815ca830d86b6c00d130995",
+                "reference": "a40a611d6b9fc4ff3815ca830d86b6c00d130995",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "d3.js",
+                "bower-asset-ignore": [
+                    ".DS_Store",
+                    ".git",
+                    ".gitignore",
+                    ".npmignore",
+                    ".spmignore",
+                    ".travis.yml",
+                    "Makefile",
+                    "bin",
+                    "component.json",
+                    "composer.json",
+                    "index.js",
+                    "lib",
+                    "node_modules",
+                    "package.json",
+                    "src",
+                    "test"
+                ]
+            }
+        },
+        {
+            "name": "bower-asset/d3-tip",
+            "version": "v0.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Caged/d3-tip.git",
+                "reference": "07cf158c54cf1686b3000d784ef55d27b095cc0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Caged/d3-tip/zipball/07cf158c54cf1686b3000d784ef55d27b095cc0e",
+                "reference": "07cf158c54cf1686b3000d784ef55d27b095cc0e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/d3": "3.5.5"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "index.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "components",
+                    "bower_components",
+                    "examples",
+                    "Makefile",
+                    "docs"
+                ]
+            }
+        },
+        {
             "name": "bower-asset/jquery",
             "version": "2.1.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "7751e69b615c6eca6f783a81e292a55725af6b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery/zipball/7751e69b615c6eca6f783a81e292a55725af6b85",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/7751e69b615c6eca6f783a81e292a55725af6b85",
                 "reference": "7751e69b615c6eca6f783a81e292a55725af6b85",
                 "shasum": ""
             },
@@ -495,17 +563,64 @@
             "time": "2013-11-30 08:25:19"
         },
         {
-            "name": "guzzlehttp/psr7",
-            "version": "1.2.1",
+            "name": "githubjeka/yii2-gui-rbac",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982"
+                "url": "https://github.com/githubjeka/gui-rbac-yii2.git",
+                "reference": "0f925d31d8bc6fe93b1f8117b67749ec5f2ede87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/4d0bdbe1206df7440219ce14c972aa57cc5e4982",
-                "reference": "4d0bdbe1206df7440219ce14c972aa57cc5e4982",
+                "url": "https://api.github.com/repos/githubjeka/gui-rbac-yii2/zipball/0f925d31d8bc6fe93b1f8117b67749ec5f2ede87",
+                "reference": "0f925d31d8bc6fe93b1f8117b67749ec5f2ede87",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/d3": ">=3.4",
+                "bower-asset/d3-tip": ">=0.6,<default",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "githubjeka\\rbac\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Tkachenko",
+                    "email": "et.coder@gmail.com",
+                    "homepage": "https://github.com/githubjeka"
+                }
+            ],
+            "description": "Yii 2 RBAC management GUI interface",
+            "homepage": "https://github.com/githubjeka/gui-rbac-yii2",
+            "keywords": [
+                "gui",
+                "rbac",
+                "yii2"
+            ],
+            "time": "2015-06-20 05:23:34"
+        },
+        {
+            "name": "guzzlehttp/psr7",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5d04bdd2881ac89abde1fb78cc234bce24327bb",
+                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb",
                 "shasum": ""
             },
             "require": {
@@ -550,7 +665,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2015-11-03 01:34:55"
+            "time": "2016-01-23 01:23:02"
         },
         {
             "name": "intervention/image",

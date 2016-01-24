@@ -16,13 +16,12 @@ return [
         'enablePreferredLanguage' => true
     ],
     'as access' => [
-       'class' => 'mdm\admin\components\AccessControl',
+       'class' => 'common\modules\user\components\AccessControl',
        'allowActions' => [
            'site/*',
-           'admin/*',
-           'user/*',
            'debug/*',
            'gii/*',
+
            // The actions listed here will be allowed to everyone including guests.
            // So, 'admin/*' should not appear here in the production, of course.
            // But in the earlier stages of your development, you may probably want to
@@ -31,9 +30,10 @@ return [
        ]
    ],
     'modules' => [
-      'admin' => [
-          'class' => 'mdm\admin\Module',
-       ],
+      // 'admin' => [
+      //     'class' => 'mdm\admin\Module',
+      //  ],
+
        'markdown' => [
             'class' => 'kartik\markdown\Module',
         ],
@@ -42,6 +42,7 @@ return [
         ],
         'cms' => [
             'class' => 'backend\modules\cms\Module',
+            'uploadUrl'=>'http://127.0.0.1/yii2/dixon-starter/frontend/web/'
         ],
         'content' => [
             'class' => 'backend\modules\content\Module',

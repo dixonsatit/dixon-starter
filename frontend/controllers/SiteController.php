@@ -66,7 +66,8 @@ class SiteController extends Controller
                  'class'=>'common\actions\SetLocaleAction',
                  'locales'=>array_keys(Yii::$app->params['availableLocales']),
                  'localeCookieName'=>'_locale'
-             ]
+             ],
+             'glide' => 'trntv\glide\actions\GlideAction'
         ];
     }
 

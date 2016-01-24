@@ -22,6 +22,15 @@ return [
         ],
     ],
     'components' => [
+        'urlManager'=>[
+            'class'=>'yii\web\UrlManager',
+            'enablePrettyUrl'=>true,
+            'showScriptName'=>false,
+            'rules'=> [
+                // Pages
+                ['pattern'=>'page/<slug>', 'route'=>'page/view'],
+            ]
+        ],
         'user' => [
             'identityClass' => 'common\modules\user\models\User',
             'enableAutoLogin' => true,

@@ -15,11 +15,12 @@ if(isset($this->params['breadcrumbs'])){
 <?php echo Nav::widget([
     'encodeLabels'=>false,
     'items' => [
+        // [
+        //   'label' => '<i class="glyphicon glyphicon-blackboard"></i> '.Yii::t('rbac','Rbac Hierarchy'),
+        //   'url' => ['/user/treeview/index'],
+        //   'active' => $c=='treeview'
+        // ],
         [
-          'label' => '<i class="glyphicon glyphicon-blackboard"></i> '.Yii::t('rbac','Rbac Hierarchy'),
-          'url' => ['/user/assignment/hierarchy'],
-          'active' => $c=='hierarchy'
-        ],[
           'label' => '<i class="glyphicon glyphicon-user"></i> '.Yii::t('rbac','Assignment'),
           'url' => ['/user/assignment/index'],
           'active' => $c=='assignment'
@@ -32,13 +33,13 @@ if(isset($this->params['breadcrumbs'])){
             'url' => ['/user/permission/index'],
             'active' => $c=='permission'
         ],[
-            'label' => '<i class="glyphicon glyphicon-gift"></i> '.Yii::t('rbac','Rule'),
-            'url' => ['/user/rule/index'],
-            'active' => $c=='rule'
-        ],[
             'label' => '<i class="glyphicon glyphicon-road"></i> '.Yii::t('rbac','Route'),
             'url' => ['/user/route/index'],
             'active' => $c=='route'
+        ],[
+            'label' => '<i class="glyphicon glyphicon-gift"></i> '.Yii::t('rbac','Rule'),
+            'url' => ['/user/rule/index'],
+            'active' => $c=='rule'
         ],[
             'label' => '<i class="glyphicon glyphicon-plus"></i>',
             'items' => [

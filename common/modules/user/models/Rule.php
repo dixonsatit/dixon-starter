@@ -3,26 +3,28 @@
 namespace common\modules\user\models;
 
 use Yii;
+use yii\base\Model;
+use yii\rbac\Rule as BaseRule;
+use yii\data\ArrayDataProvider;
 
 /**
- * This is the model class for table "auth_rule".
  *
  * @property string $name
  * @property string $data
  * @property integer $created_at
  * @property integer $updated_at
  *
- * @property AuthItem[] $authItems
  */
-class Rule extends \yii\db\ActiveRecord
+
+class Rule extends Model
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'auth_rule';
-    }
+   public $name;
+   public $createdAt;
+   public $updatedAt;
+   public $className;
+   public $_item;
+
+
 
     /**
      * @inheritdoc
@@ -30,11 +32,19 @@ class Rule extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['data'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
-            [['name'], 'string', 'max' => 64]
+            [['className'], 'required'],
+            [['createdAt', 'updatedAt'], 'integer'],
+            [['name'], 'string', 'max' => 64],
+            [['className'], 'string', 'max' => 256],
+            [['className'], 'classExists']
         ];
+    }
+
+    public function classExists()
+    {
+        if (!class_exists($this->className) || !is_subclass_of($this->className, BaseRule::className())) {
+            $this->addError('className', "Unknown Class: {$this->className}");
+        }
     }
 
     /**
@@ -43,27 +53,26 @@ class Rule extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            [['name', 'className'], 'required'],
             'name' => Yii::t('user', 'Name'),
-            'data' => Yii::t('user', 'Data'),
-            'created_at' => Yii::t('user', 'Created At'),
-            'updated_at' => Yii::t('user', 'Updated At'),
+            'createdAt' => Yii::t('user', 'Created At'),
+            'updatedAt' => Yii::t('user', 'Updated At'),
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAuthItems()
+    public function search($params)
     {
-        return $this->hasMany(AuthItem::className(), ['rule_name' => 'name']);
-    }
+       $authManager = Yii::$app->authManager;
+       $models = [];
+       foreach ($authManager->getRules() as $name => $item) {
+          $models[$name] = new static([
+            'name' => $item->name,
+            'className' => get_class($item)
+          ]);
+       }
 
-    /**
-     * @inheritdoc
-     * @return RuleQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new RuleQuery(get_called_class());
+       return new ArrayDataProvider([
+          'allModels' => $models,
+       ]);
     }
 }

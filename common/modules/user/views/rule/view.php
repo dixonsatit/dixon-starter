@@ -11,27 +11,14 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Rules'), 'url' => [
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rule-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('user', 'Update'), ['update', 'id' => $model->name], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('user', 'Delete'), ['delete', 'id' => $model->name], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('user', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
+    <h1> <?= Html::encode($this->title)?> </h1>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'name',
-            'data:ntext',
-            'created_at',
-            'updated_at',
+            'className',
+            'createdAt:dateTime',
+            'updatedAt:dateTime',
         ],
     ]) ?>
 

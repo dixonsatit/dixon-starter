@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
+            'className',
             //'data:ntext',
             // 'created_at',
             // 'updated_at',
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'header' => Html::a('<i class="glyphicon glyphicon-plus"></i> '.Yii::t('user', 'Create Rule'), ['create'], ['class' => 'btn btn-success btn-sm btn-block']),
               'options' => ['style'=>'width:120px;'],
               'buttonOptions' => ['class'=>'btn btn-default'],
-              'template' => '<div class="btn-group btn-group-sm text-center" role="group"> {view} {update} {delete} </div>'
+              'template' => '<div class="btn-group btn-group-sm text-center" role="group"> {view} {delete} </div>'
             ],
         ],
     ]); ?>

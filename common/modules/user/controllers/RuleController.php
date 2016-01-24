@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  */
 class RuleController extends Controller
 {
-    public $layout = 'rbac'; 
+    public $layout = 'rbac';
 
     public function behaviors()
     {
@@ -34,9 +34,8 @@ class RuleController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RuleSearch();
+        $searchModel = new Rule();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -50,8 +49,15 @@ class RuleController extends Controller
      */
     public function actionView($id)
     {
+        $role = $rule = $this->findModel($id);
+        $model = new Rule([
+           'name' => $role->name,
+           'className' => get_class($role),
+           'createdAt' => $role->createdAt,
+           'updatedAt' => $role->updatedAt
+        ]);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model
         ]);
     }
 
@@ -63,33 +69,20 @@ class RuleController extends Controller
     public function actionCreate()
     {
         $model = new Rule();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        $authManager = Yii::$app->authManager;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            try {
+              $role = new $model->className;
+              $authManager->add($role);
+              return $this->redirect(['view', 'id' => $role->name]);
+            } catch (\Exception $e) {
+                $model->addError('className', "Duplicate entry '{$role->name}' Role" );
+            }
         }
-    }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
 
-    /**
-     * Updates an existing Rule model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
     }
 
     /**
@@ -100,8 +93,8 @@ class RuleController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $rule = $this->findModel($id);
+        Yii::$app->authManager->remove($rule);
         return $this->redirect(['index']);
     }
 
@@ -114,7 +107,7 @@ class RuleController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Rule::findOne($id)) !== null) {
+        if (($model = Yii::$app->authManager->getRule($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

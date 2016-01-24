@@ -2,6 +2,7 @@
 
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 use kartik\markdown\MarkdownEditor;
@@ -23,10 +24,31 @@ use kartik\datetime\DateTimePicker;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
+    <?php if(Yii::$app->getModule('cms')->contentType == 'markdown'): ?>
     <?= $form->field($model, 'body')->widget(
         MarkdownEditor::classname(),
         ['height' => 300, 'encodeLabels' => false]
     ); ?>
+  <?php else : ?>
+    <?= $form->field($model, 'body')->widget(\vova07\imperavi\Widget::className(), [
+        'settings' => [
+            'lang' => 'th',
+            'minHeight' => 200,
+            'imageManagerJson' => Url::to(['/cms/post/images-get']),
+            'fileManagerJson' => Url::to(['/cms/post/files-get']),
+            'imageUpload' => Url::to(['/cms/post/image-upload']),
+            'fileUpload' => Url::to(['/cms/post/file-upload']),
+            'plugins' => [
+                'video',
+                'fontcolor',
+                'clips',
+                'fullscreen',
+                'imagemanager',
+                'filemanager',
+            ]
+        ]
+    ]);?>
+  <?php endif; ?>
 
     <?= $form->field($model, 'view')->widget(Select2::classname(), [
     'data' => ['main'=>'Default'],

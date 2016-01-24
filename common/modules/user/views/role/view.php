@@ -21,10 +21,10 @@ $rbac = RbacAsset::register($this);
         'attributes' => [
             'name',
             'description:ntext',
-            'rule_name',
+            'ruleName',
             'data:ntext',
-            'created_at:dateTime',
-            'updated_at:dateTime',
+            'createdAt:dateTime',
+            'updatedAt:dateTime',
         ],
     ]) ?>
     <?=$this->render('/_assignment')?>

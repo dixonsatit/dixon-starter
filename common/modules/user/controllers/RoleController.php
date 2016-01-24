@@ -38,7 +38,7 @@ class RoleController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RoleSearch();
+        $searchModel = new Role();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -167,11 +167,7 @@ class RoleController extends Controller
     public function actionCreate()
     {
         $model = new Role();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $authManager = Yii::$app->authManager;
-            $role = $authManager->createRole($model->name);
-            $role->description = $model->description;
-            $authManager->add($role);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->name]);
         } else {
             return $this->render('create', [
@@ -189,14 +185,7 @@ class RoleController extends Controller
     public function actionUpdate($id)
     {
       $model = $this->findModel($id);
-      $authManager = Yii::$app->authManager;
-      if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-          $role = $authManager->getRole($model->getOldAttribute('name'));
-          if($role != null){
-            $role->name = $model->name;
-            $role->description = $model->description;
-            $authManager->update($model->getOldAttribute('name'),$role);
-          }
+      if ($model->load(Yii::$app->request->post()) && $model->save()) {
           return $this->redirect(['index']);
       } else {
             return $this->render('update', [
@@ -213,11 +202,8 @@ class RoleController extends Controller
      */
     public function actionDelete($id)
     {
-        //$model = $this->findModel($id);
-        $authManager = Yii::$app->authManager;
-        $role = $authManager->getRole($id);
-        $authManager->remove($role);
-        return $this->redirect(['index']);
+      $this->findModel($id)->delete();
+      return $this->redirect(['index']);
     }
 
     /**

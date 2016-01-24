@@ -10,6 +10,12 @@ return [
                 'path' => '@backend/web/uploads'
             ]
       ],
+      'glide' => [
+        'class' => 'trntv\glide\components\Glide',
+        'sourcePath' => '@backend/web/uploads',
+        'cachePath' => '@runtime/glide',
+        'signKey' => false // "false" if you do not want to use HTTP signatures
+      ],
       'authManager' => [
           'class' => 'yii\rbac\DbManager',
       ],

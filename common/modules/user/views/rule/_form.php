@@ -11,17 +11,9 @@ use yii\widgets\ActiveForm;
 <div class="rule-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'data')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('user', 'Create') : Yii::t('user', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <?= $form->field($model, 'className')->textInput(['maxlength' => true]) ?>
+    <div class="form-group text-right">
+        <?= Html::submitButton(Yii::t('user', 'Create Rule'), ['class' =>  'btn btn-success btn-lg']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

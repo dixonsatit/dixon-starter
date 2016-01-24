@@ -44,6 +44,7 @@ AppAsset::register($this);
         ]],
         ['label' => Yii::t('backend', 'Management'), 'items' => [
               ['label' => Yii::t('backend', 'Manage Users'), 'url' => ['/user/manage-user/index']],
+              ['label' => Yii::t('backend', 'RBAC'), 'url' => ['/user/assignment/index']],
               ['label' => Yii::t('common', 'Content'), 'url' => ['/content/default/index']],
         ]],
     ];
