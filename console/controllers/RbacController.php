@@ -34,13 +34,16 @@ class RbacController extends Controller
           $authorRule = new AuthorRule;
           $auth->add($authorRule);
 
-          $updatePost = $auth->createPermission('updatePost');
-          $updatePost->description = 'Update post';
+          $manage = $auth->createPermission('/user/*');
+          $auth->add($manage);
+          $cms = $auth->createPermission('/cms/*');
+          $auth->add($cms);
         //  $updatePost->ruleName = $authorRule->name;
-          $auth->add($updatePost);
 
-          $auth->addChild($user,$updatePost);
+
           $auth->addChild($manager, $user);
+          $auth->addChild($manager, $manage);
+          $auth->addChild($manager, $cms);
           $auth->addChild($admin, $manager);
 
           $auth->assign($user, 3);

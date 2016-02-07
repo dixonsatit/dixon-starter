@@ -1,6 +1,7 @@
 # yii console command
 /yii
 /frontend/web/uploads
+/backend/web/uploads
 
 # phpstorm project files
 .idea
