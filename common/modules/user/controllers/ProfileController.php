@@ -88,6 +88,7 @@ class ProfileController extends Controller
     public function actionSettings()
     {
       $model = $this->findModel(Yii::$app->user->id);
+      $model->scenario = 'registration';
       $profile = $model->profile;
 
       if ($model->load(Yii::$app->request->post()) &&
