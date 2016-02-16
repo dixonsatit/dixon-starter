@@ -84,6 +84,7 @@ class User extends ActiveRecord implements IdentityInterface
                  ['confirm_password', 'string', 'min' => 6],
                  ['confirm_password', 'compare','compareAttribute'=>'password'],
 
+                 ['confirmed_email_at', 'integer'],
                  ['roles', 'safe']
 
              ];
@@ -282,5 +283,10 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getProfile(){
       return $this->hasOne(Profile::className(),['user_id'=>'id']);
+    }
+
+    public function confirmationAccount(){
+      $this->confirmed_email_at = time();
+      return $this->save();
     }
 }

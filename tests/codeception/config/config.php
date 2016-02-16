@@ -14,7 +14,7 @@ return [
     ],
     'components' => [
         'db' => [
-            'dsn' => 'mysql:host=localhost;dbname=yii2_advanced_tests',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=app_dixon_starter_test',
         ],
         'mailer' => [
             'useFileTransport' => true,

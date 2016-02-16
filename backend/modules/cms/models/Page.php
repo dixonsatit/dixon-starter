@@ -31,6 +31,8 @@ use yii\helpers\ArrayHelper;
 class Page extends \yii\db\ActiveRecord
 {
 
+  const STATUS_DRAFT = 0;
+  const STATUS_PUBLISHED = 1;
     /**
      * @var array
      */
@@ -84,7 +86,7 @@ class Page extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['body', 'title', 'view'], 'required'],
+            [['body', 'title'], 'required'],
             [['body'], 'string'],
             [['status', 'category_id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['slug', 'title', 'view', 'thumbnail_base_url', 'thumbnail_path'], 'string', 'max' => 255],
