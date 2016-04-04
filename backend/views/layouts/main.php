@@ -50,15 +50,15 @@ AppAsset::register($this);
     ];
 
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/a/auth/login']];
     } else {
         $menuItems[] = [
           'label' => Yii::t('common', 'Account ({username})',['username'=>Yii::$app->user->identity->username]),
           'items'=>[
-              ['label' => Yii::t('common', 'Settings'), 'url' => ['/user/profile/index']],
+              ['label' => Yii::t('common', 'Settings'), 'url' => ['/a/profile/index']],
               [
                  'label' => Yii::t('common', 'Logout ({username})',['username'=>Yii::$app->user->identity->username]),
-                 'url' => ['/site/logout'],
+                 'url' => ['/a/auth/logout'],
                  'linkOptions' => ['data-method' => 'post']
              ]
           ]

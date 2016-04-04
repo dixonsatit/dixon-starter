@@ -154,6 +154,10 @@ class Post extends \yii\db\ActiveRecord
       return $this->hasOne(User::className(),['id'=>'created_by']);
     }
 
+    public function getAuthorName(){
+      return isset($this->author) ? $this->author->username : null;
+    }
+
     public function getPostAttachments()
     {
         return $this->hasMany(Attachment::className(), ['post_id' => 'id']);
@@ -176,5 +180,24 @@ class Post extends \yii\db\ActiveRecord
           $tagValues[$tag->name] = $tag->name;
         }
       return $tagValues;
+    }
+
+    public function itemAlias($key){
+      $items = [
+        'status'=>[
+          '0'=>Yii::t('app', 'Pending'),
+          '1'=>Yii::t('app', 'Plublished')
+        ]
+      ];
+      return isset($items[$key]) ? $items[$key] : [];
+    }
+
+    public function getItemStatus(){
+      return $this->itemAlias('status');
+    }
+
+    public function getStatusName(){
+      $item =  $this->itemAlias('status');
+      return isset($item[$this->status]) ? $item[$this->status] : null;
     }
 }

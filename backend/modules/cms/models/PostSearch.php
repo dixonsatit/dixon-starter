@@ -57,7 +57,7 @@ class PostSearch extends Post
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'published_at' => $this->published_at,
+            'date(published_at)' => $this->published_at,
             'status' => $this->status,
             'category_id' => $this->category_id,
             'created_at' => $this->created_at,

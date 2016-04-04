@@ -28,11 +28,13 @@
         "nezhelskoy/yii2-highlight": "*",
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-krajee-base": "dev-master",
         "kartik-v/yii2-markdown": "dev-master",
         "pheme/yii2-toggle-column": "*",
         "mdmsoft/yii2-admin": "~2.0",
-        "githubjeka/yii2-gui-rbac": "*"
+        "githubjeka/yii2-gui-rbac": "*",
+        "dixonstarter/yii2-title-action": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

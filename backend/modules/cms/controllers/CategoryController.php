@@ -15,6 +15,8 @@ use yii\filters\AccessControl;
  */
 class CategoryController extends Controller
 {
+    public $layout = 'main';
+
     public function behaviors()
     {
         return [

@@ -11,6 +11,9 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    // 'aliases'=>[
+    //   '@dixonstarter/grid'=>'@backend/runtime/tmp-extensions/yii2-title-action'
+    // ],
     'as locale' => [
         'class' => 'common\components\LocaleBehavior',
         'enablePreferredLanguage' => true
@@ -21,6 +24,7 @@ return [
            'site/*',
            'debug/*',
            'gii/*',
+           'a/*'
 
            // The actions listed here will be allowed to everyone including guests.
            // So, 'admin/*' should not appear here in the production, of course.
@@ -33,7 +37,9 @@ return [
       // 'admin' => [
       //     'class' => 'mdm\admin\Module',
       //  ],
-
+      'rbac' => [
+           'class' => 'backend\modules\rbac\Module',
+       ],
        'markdown' => [
             'class' => 'kartik\markdown\Module',
         ],
@@ -47,12 +53,15 @@ return [
         'content' => [
             'class' => 'backend\modules\content\Module',
         ],
+        'a' => [
+            'class' => 'common\modules\account\Module',
+        ],
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'common\modules\user\models\User',
+            'identityClass' => 'common\modules\account\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['user/auth/login'],
+            'loginUrl' => ['a/auth/login'],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
