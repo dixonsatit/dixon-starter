@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="post-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?><?=Html::a('<i class="glyphicon glyphicon-plus"></i> '.Yii::t('app', 'Create Category'), ['create'], ['class' => 'btn btn-success pull-right'])?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -48,8 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'category_id',
             [
               'attribute'=>'title',
-              'linkStyle'=>'default', // default, buttongroup
-              'labelStyle'=>'text', // icon,text,iconText
+              'linkStyle'=>'buttongroup', // default, buttongroup
+              'labelStyle'=>'iconText', // icon,text,iconText
               'class'=>'\dixonstarter\grid\TitleActionColumn',
             ],
             [
@@ -82,8 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
               },
               'options'=>['style'=>'width:120px;'],
             ],
-
-
             // 'updated_by',
 
             // [

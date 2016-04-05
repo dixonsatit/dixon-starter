@@ -11,6 +11,7 @@ use trntv\filekit\behaviors\UploadBehavior;
 //use backend\modules\cms\behaviors\UploadBehavior;
 use creocoder\taggable\TaggableBehavior;
 use yii\helpers\ArrayHelper;
+use common\models\User;
 /**
  * This is the model class for table "{{%cms_page}}".
  *
@@ -107,7 +108,7 @@ class Page extends \yii\db\ActiveRecord
             'view' => Yii::t('app', 'View'),
             'thumbnail_base_url' => Yii::t('app', 'Thumbnail Base Url'),
             'thumbnail_path' => Yii::t('app', 'Thumbnail Path'),
-            'status' => Yii::t('app', 'Status'),
+            'status' => Yii::t('app', 'Published'),
             'category_id' => Yii::t('app', 'Category ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -128,5 +129,36 @@ class Page extends \yii\db\ActiveRecord
     public function getPageAttachments()
     {
         return $this->hasMany(Attachment::className(), ['page_id' => 'id']);;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAuthor(){
+      return $this->hasOne(User::className(),['id'=>'created_by']);
+    }
+
+    public function getAuthorName(){
+      return isset($this->author) ? $this->author->username : null;
+    }
+
+    public function itemAlias($key){
+      $items = [
+        'status'=>[
+          '0'=>Yii::t('app', 'Pending'),
+          '1'=>Yii::t('app', 'Plublished')
+        ]
+      ];
+      return isset($items[$key]) ? $items[$key] : [];
+    }
+
+    public function getItemStatus(){
+      return $this->itemAlias('status');
+    }
+
+
+    public function getStatusName(){
+      $item =  $this->itemAlias('status');
+      return isset($item[$this->status]) ? $item[$this->status] : null;
     }
 }
